@@ -1,9 +1,7 @@
-import { getCustomRepository } from 'typeorm';
-
 import Appointment from '../infra/typeorm/entities/Appointment';
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
-interface Request {
+interface IRequest {
   name: string;
   address: string;
   tel: string;
@@ -13,6 +11,8 @@ interface Request {
 }
 
 class CreateAppointmentService {
+  constructor(private appointmentsRepository: IAppointmentsRepository) {}
+
   public async execute({
     name,
     address,
@@ -20,10 +20,8 @@ class CreateAppointmentService {
     desc,
     date,
     done,
-  }: Request): Promise<Appointment> {
-    const appointmentsRepository = getCustomRepository(AppointmentsRepository);
-
-    const appointment = appointmentsRepository.create({
+  }: IRequest): Promise<Appointment> {
+    const appointment = await this.appointmentsRepository.create({
       name,
       address,
       tel,
@@ -31,8 +29,6 @@ class CreateAppointmentService {
       date,
       done,
     });
-
-    await appointmentsRepository.save(appointment);
 
     return appointment;
   }
