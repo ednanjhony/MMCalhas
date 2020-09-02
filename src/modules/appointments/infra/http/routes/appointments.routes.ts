@@ -3,9 +3,11 @@ import { celebrate, Segments, Joi } from 'celebrate';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import AppointmentsController from '../controllers/AppointmentsController';
+import ListAppointmentsController from '../controllers/ListAppointmentsController';
 
 const appointmentsRouter = Router();
 const appointmentsController = new AppointmentsController();
+const listAppointmentsController = new ListAppointmentsController();
 
 appointmentsRouter.use(ensureAuthenticated);
 
@@ -23,5 +25,7 @@ appointmentsRouter.post(
   }),
   appointmentsController.create,
 );
+
+appointmentsRouter.get('/', listAppointmentsController.show);
 
 export default appointmentsRouter;

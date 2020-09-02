@@ -12,6 +12,9 @@ class Appointment {
   id: string;
 
   @Column()
+  appointment_id: string;
+
+  @Column()
   name: string;
 
   @Column()
