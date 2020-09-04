@@ -37,6 +37,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@types/redis": "^2.8.27",
     "bcryptjs": "^2.4.3",
     "celebrate": "^12.2.0",
     "class-transformer": "^0.3.1",
