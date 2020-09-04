@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
+import IFindAllAppointments from '@modules/appointments/dtos/IFindAllAppointmentsDTO ';
 
 import Appointment from '../entities/Appointment';
 
@@ -12,12 +13,22 @@ class AppointmentsRepository implements IAppointmentsRepository {
     this.ormRepository = getRepository(Appointment);
   }
 
-  public async findByDate(date: Date): Promise<Appointment | undefined> {
-    const findAppointment = await this.ormRepository.findOne({
-      where: { date },
-    });
+  public async findAllAppointments({
+    appointment_id,
+  }: IFindAllAppointments): Promise<Appointment[]> {
+    let appointments: Appointment[];
 
-    return findAppointment;
+    if (appointment_id) {
+      appointments = await this.ormRepository.find({
+        where: {
+          appointment_id,
+        },
+      });
+    } else {
+      appointments = await this.ormRepository.find();
+    }
+
+    return appointments;
   }
 
   public async create({

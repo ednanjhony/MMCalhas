@@ -5,6 +5,7 @@ import Appointment from '../infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
+  appointment_id: string;
   name: string;
   address: string;
   tel: string;
@@ -24,6 +25,7 @@ class CreateAppointmentService {
   ) {}
 
   public async execute({
+    appointment_id,
     name,
     address,
     tel,
