@@ -32,6 +32,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   public async create({
+    appointment_id,
     name,
     address,
     tel,
@@ -40,6 +41,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     done,
   }: ICreateAppointmentDTO): Promise<Appointment> {
     const appointment = this.ormRepository.create({
+      appointment_id,
       name,
       address,
       tel,
