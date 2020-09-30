@@ -4,6 +4,7 @@ import IProvidersRepository from '@modules/providers/repositories/IProvidersRepo
 import Provider from '../infra/typeorm/entities/Provider';
 
 interface IRequest {
+  provider_id: string;
   name: string;
   tel: string;
 }
@@ -15,13 +16,18 @@ class ListProvidersService {
     private providersRepository: IProvidersRepository,
   ) {}
 
-  public async execute({ name, tel }: IRequest): Promise<Provider[]> {
-    const providers = await this.providersRepository.findAllProviders({
+  public async execute({
+    provider_id,
+    name,
+    tel,
+  }: IRequest): Promise<Provider[]> {
+    const provider = await this.providersRepository.findAllProviders({
+      provider_id,
       name,
       tel,
     });
 
-    return providers;
+    return provider;
   }
 }
 

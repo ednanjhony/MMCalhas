@@ -34,6 +34,7 @@ class CreateAppointmentService {
     done,
   }: IRequest): Promise<Appointment> {
     const appointment = await this.appointmentsRepository.create({
+      appointment_id,
       name,
       address,
       tel,

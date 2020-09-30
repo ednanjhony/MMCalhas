@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
-import ensureAuthenticated from '@modules/providers/infra/http/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import ProvidersController from '../controllers/ProvidersController';
 import ListProvidersController from '../controllers/ListProvidersController';
 
@@ -12,7 +12,7 @@ const listProvidersController = new ListProvidersController();
 providersRouter.use(ensureAuthenticated);
 
 providersRouter.post(
-  '/providers',
+  '/',
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),

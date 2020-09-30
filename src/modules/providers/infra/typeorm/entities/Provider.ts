@@ -12,6 +12,9 @@ class Provider {
   id: string;
 
   @Column()
+  provider_id: string;
+
+  @Column()
   name: string;
 
   @Column()
