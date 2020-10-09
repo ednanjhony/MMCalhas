@@ -13,3 +13,31 @@ interface IRequest {
 }
 
 @injectable()
+class ListCashFlowService {
+  constructor(
+    @inject('CashFlowRepository')
+    private cashFlowRepository: ICashFlowRepository,
+  ) {}
+
+  public async execute({
+    id,
+    name,
+    date,
+    price,
+    total,
+    desc,
+  }: IRequest): Promise<CashFlow[]> {
+    const cashFlow = await this.cashFlowRepository.findAllCashFlow({
+      id,
+      name,
+      date,
+      price,
+      total,
+      desc,
+    });
+
+    return cashFlow;
+  }
+}
+
+export default ListCashFlowService;

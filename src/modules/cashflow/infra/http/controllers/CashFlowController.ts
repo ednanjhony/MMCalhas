@@ -6,7 +6,7 @@ import CreateCashFlowService from '@modules/cashflow/services/CreateCashFlowServ
 export default class CashFlowController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, date, price, desc } = request.body;
+    const { name, date, price, total, desc } = request.body;
 
     const createCashFlow = container.resolve(CreateCashFlowService);
 
@@ -15,9 +15,10 @@ export default class CashFlowController {
       name,
       date,
       price,
+      total,
       desc,
     });
 
-    return response.json.json(cashFlow);
+    return response.json(cashFlow);
   }
 }

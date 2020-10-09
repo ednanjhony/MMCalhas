@@ -14,7 +14,7 @@ class CashFlow {
   @Column()
   name: string;
 
-  @Column()
+  @Column('time with time zone')
   date: Date;
 
   @Column('float')

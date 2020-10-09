@@ -6,16 +6,18 @@ import ListCashFlowService from '@modules/cashflow/services/ListCashFlowService'
 export default class ListCashFlowController {
   public async index(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, date, price, total, desc } = request.query;
+    const { name, day, month, year, price, total, desc } = request.query;
 
     const listCashFlow = container.resolve(ListCashFlowService);
 
     const cashFlow = await listCashFlow.execute({
       id,
       name: String(name),
-      date,
-      price,
-      total,
+      day: Number(day),
+      month: Number(month),
+      year: Number(year),
+      price: Number(price),
+      total: Number(total),
       desc: String(desc),
     });
 
