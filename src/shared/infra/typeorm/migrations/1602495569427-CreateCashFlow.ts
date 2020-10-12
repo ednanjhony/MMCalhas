@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateCashFlow1602061646705 implements MigrationInterface {
+export default class CreateCashFlow1602495569427 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'cashflow',
+        name: 'cashFlow',
         columns: [
           {
             name: 'id',
@@ -31,7 +31,7 @@ export default class CreateCashFlow1602061646705 implements MigrationInterface {
           {
             name: 'total',
             type: 'float',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'desc',
@@ -54,6 +54,6 @@ export default class CreateCashFlow1602061646705 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('cashflow');
+    await queryRunner.dropTable('cashFlow');
   }
 }

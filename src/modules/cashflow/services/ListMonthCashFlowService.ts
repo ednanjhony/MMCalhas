@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { getDaysInMonth, getDate, isAfter } from 'date-fns';
+import { getDate } from 'date-fns';
 
 import ICashFlowRepository from '../repositories/ICashFlowRepository';
 
@@ -20,13 +20,21 @@ class ListMonthCashFlowService {
     private cashFlowRepository: ICashFlowRepository,
   ) {}
 
+  // maintance
+
   public async execute({ id, year, month }: IRequest): Promise<IResponse> {
-    const cashFlow = await this.cashFlowRepository.fidnAllInMonthFromCashFlow({
+    const cashFlows = await this.cashFlowRepository.fidnAllInMonthFromCashFlow({
       id,
       year,
       month,
     });
 
-    const number;
+    const cashFlowInMonth = cashFlows.filter(cashFlow => {
+      return getDate(cashFlow.date) === month;
+    });
+
+    return cashFlowInMonth;
   }
 }
+
+export default ListMonthCashFlowService;

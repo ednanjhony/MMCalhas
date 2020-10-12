@@ -15,6 +15,9 @@ import UserTokensRepository from '@modules/users/infra/typeorm/repositories/User
 import IProvidersRepository from '@modules/providers/repositories/IProvidersRepository';
 import ProvidersRepository from '@modules/providers/infra/typeorm/repositories/ProvidersRepository';
 
+import ICashFlowRepository from '@modules/cashflow/repositories/ICashFlowRepository';
+import CashFlowRepository from '@modules/cashflow/infra/typeorm/repositories/CashFlowRepository';
+
 container.registerSingleton<IAppointmentsRepository>(
   'AppointmentsRepository',
   AppointmentsRepository,
@@ -33,4 +36,9 @@ container.registerSingleton<IUserTokensRepository>(
 container.registerSingleton<IProvidersRepository>(
   'ProvidersRepository',
   ProvidersRepository,
+);
+
+container.registerSingleton<ICashFlowRepository>(
+  'CashFlowRepository',
+  CashFlowRepository,
 );

@@ -3,9 +3,12 @@ import { celebrate, Segments, Joi } from 'celebrate';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import CashFlowController from '../controllers/CashFlowController';
+import ListCashFlowController from '../controllers/ListCashFlowController';
 
 const cashFlowRouter = Router();
 const cashFlowController = new CashFlowController();
+
+const listCashFlowController = new ListCashFlowController();
 
 cashFlowRouter.use(ensureAuthenticated);
 

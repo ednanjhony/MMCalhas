@@ -6,6 +6,7 @@ import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
 import passwordRouter from '@modules/users/infra/http/routes/password.routes';
 import profileRouter from '@modules/users/infra/http/routes/profile.routes';
 import providersRouter from '@modules/providers/infra/http/routes/providers.routes';
+import cashFlowRouter from '@modules/cashflow/infra/http/routes/cashFlow.routes';
 
 const routes = Router();
 
@@ -15,5 +16,6 @@ routes.use('/sessions', sessionsRouter);
 routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
 routes.use('/providers', providersRouter);
+routes.use('/cash_flow', cashFlowRouter);
 
 export default routes;
