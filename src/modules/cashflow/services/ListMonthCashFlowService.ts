@@ -2,16 +2,14 @@ import { injectable, inject } from 'tsyringe';
 import { getDate } from 'date-fns';
 
 import ICashFlowRepository from '../repositories/ICashFlowRepository';
+import CashFlow from '../infra/typeorm/entities/CashFlow';
 
 interface IRequest {
   id: string;
+  day: number;
   month: number;
   year: number;
 }
-
-type IResponse = Array<{
-  day: number;
-}>;
 
 @injectable()
 class ListMonthCashFlowService {
@@ -22,7 +20,7 @@ class ListMonthCashFlowService {
 
   // maintance
 
-  public async execute({ id, year, month }: IRequest): Promise<IResponse> {
+  public async execute({ id, year, month }: IRequest): Promise<CashFlow[]> {
     const cashFlows = await this.cashFlowRepository.fidnAllInMonthFromCashFlow({
       id,
       year,
