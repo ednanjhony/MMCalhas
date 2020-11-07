@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
+import IUpdateAppointmentDTO from '@modules/appointments/dtos/IUpdateAppointmentsDTO';
 import IFindAllAppointments from '@modules/appointments/dtos/IFindAllAppointmentsDTO ';
 
 import Appointment from '../entities/Appointment';
@@ -53,6 +54,30 @@ class AppointmentsRepository implements IAppointmentsRepository {
     await this.ormRepository.save(appointment);
 
     return appointment;
+  }
+
+  public async update({
+    appointment_id,
+    name,
+    address,
+    tel,
+    desc,
+    date,
+    done,
+  }: IUpdateAppointmentDTO): Promise<Appointment[]> {
+    const appointments = this.ormRepository.update({
+      appointment_id,
+      name,
+      address,
+      tel,
+      desc,
+      date,
+      done,
+    });
+
+    await this.ormRepository.save(appointments);
+
+    return appointments;
   }
 }
 

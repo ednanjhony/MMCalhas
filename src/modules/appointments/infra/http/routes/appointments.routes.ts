@@ -28,4 +28,19 @@ appointmentsRouter.post(
 
 appointmentsRouter.get('/', listAppointmentsController.index);
 
+appointmentsRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string(),
+      address: Joi.string(),
+      tel: Joi.string(),
+      desc: Joi.string(),
+      date: Joi.string(),
+      done: Joi.boolean(),
+    },
+  }),
+  appointmentsController.update,
+);
+
 export default appointmentsRouter;

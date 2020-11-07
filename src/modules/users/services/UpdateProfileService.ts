@@ -49,7 +49,7 @@ class UpdateProfile {
 
     if (password && !old_password) {
       throw new AppError(
-        'You need to inform the old passawor to set a new password',
+        'You need to inform the old passaword to set a new password',
       );
     }
 
